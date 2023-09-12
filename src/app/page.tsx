@@ -1,10 +1,11 @@
 import React from 'react';
 import '~/app/styles/App.scss';
+import Sidebar from './components/Organisms/Sidebar';
 
 const App = () => {
   return (
     <div className='app'>
-      <h1 className='app-text'>App</h1>
+      <Sidebar />
     </div>
   );
 };
