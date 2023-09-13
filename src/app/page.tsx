@@ -1,9 +1,13 @@
-import React from 'react'
+import React from 'react';
+import '~/app/styles/App.scss';
+import Sidebar from './components/Organisms/Sidebar';
 
 const App = () => {
   return (
-    <div>App</div>
-  )
-}
+    <div className='app'>
+      <Sidebar />
+    </div>
+  );
+};
 
-export default App
+export default App;
