@@ -9,7 +9,7 @@ const SidebarLeft = () => {
       <div className='sidebar-left-icon'>
         <Image
           className='sidebar-left-icon-image'
-          src='/next.svg'
+          src='/discordIcon.png'
           alt=''
           width={50}
           height={50}

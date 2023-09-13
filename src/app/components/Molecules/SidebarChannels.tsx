@@ -5,6 +5,7 @@ import SidebarChannel from '~/app/components/Atom/SidebarChannel';
 
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import AddIcon from '@mui/icons-material/Add';
+import SidebarChannelSettings from '../Atom/SidebarChannelOption';
 
 const SidebarChannels = () => {
   return (
@@ -19,6 +20,7 @@ const SidebarChannels = () => {
       <div className='sidebar-right-channels-list'>
         <SidebarChannel />
       </div>
+      <SidebarChannelSettings />
     </div>
   );
 };

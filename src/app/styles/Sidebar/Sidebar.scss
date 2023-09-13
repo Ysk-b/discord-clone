@@ -28,11 +28,11 @@
   }
 
   .sidebar-right {
+    position: relative;
     display: flex;
     flex-direction: column;
     padding: 0 12px;
     background-color: #2b2d33;
-    position: relative;
     width: 240px;
 
     .sidebar-right-top {
@@ -80,6 +80,29 @@
           &:hover {
             opacity: 0.7;
           }
+        }
+      }
+
+      .sidebar-right-channels-settings {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        width: 100%;
+        padding: 12px 8px 8px;
+        border-top: 1px solid #686a6e;
+
+        .sidebar-right-channels-settings-account {
+          display: flex;
+          align-items: center;
+        }
+
+        .sidebar-right-channels-settings-voice {
+          display: flex;
+          gap: 12px;
+          color: #686a6e;
         }
       }
     }
