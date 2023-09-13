@@ -1,6 +1,5 @@
 'use client';
 
-import React, { useEffect, useState } from 'react';
 import '~/app/styles/Sidebar/Sidebar.scss';
 
 import SidebarChannel from '~/app/components/Atom/SidebarChannel';
@@ -8,31 +7,12 @@ import SidebarChannelSettings from '~/app/components/Atom/SidebarChannelOption';
 
 import AddIcon from '@mui/icons-material/Add';
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
-
-import { db } from '~/app/data/firebase';
-import { DocumentData, collection, onSnapshot, query } from 'firebase/firestore';
-
-interface ChannelProps {
-  id: string;
-  channel: DocumentData;
-}
+import { useAppSelector } from '~/app/data/hooks';
+import useCollection from '~/app/hooks/useCollection';
 
 const SidebarChannels = () => {
-  const [channels, setChannels] = useState<ChannelProps[]>([]);
-  const queryData = query(collection(db, 'channels'));
-
-  useEffect(() => {
-    onSnapshot(queryData, (querySnapshot) => {
-      const channelsResults: ChannelProps[] = [];
-      querySnapshot.docs.forEach((doc) =>
-        channelsResults.push({
-          id: doc.id,
-          channel: doc.data(),
-        }),
-      );
-      setChannels(channelsResults);
-    });
-  }, []);
+  const user = useAppSelector((state) => state.user);
+  const { documents: channels } = useCollection('channels');
 
   return (
     <div className='sidebar-right-channels'>
