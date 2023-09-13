@@ -1,6 +1,7 @@
 import React from 'react';
-import Image from 'next/image';
 import '~/app/styles/Sidebar/Sidebar.scss';
+
+import Image from 'next/image';
 
 const SidebarLeft = () => {
   return (
