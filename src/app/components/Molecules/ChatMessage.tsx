@@ -1,15 +1,17 @@
-import { Avatar } from '@mui/material';
 import React from 'react';
+import '~/app/styles/Chat/Chat.scss';
+
+import { Avatar } from '@mui/material';
 
 const ChatMessage = () => {
   return (
     <div className='chat-messages-message'>
       <Avatar />
       <div className='chat-messages-message-info'>
-        <h4>
+        <p>
           TEST
           <span className='chat-messages-message-info-timestamp'></span>
-        </h4>
+        </p>
         <p>TEST</p>
       </div>
     </div>

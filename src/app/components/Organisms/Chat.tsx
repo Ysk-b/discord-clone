@@ -1,4 +1,5 @@
 import React from 'react';
+import '~/app/styles/Chat/Chat.scss';
 
 import GifIcon from '@mui/icons-material/Gif';
 import { AddCircleOutline, CardGiftcardOutlined, EmojiEmotionsOutlined } from '@mui/icons-material';
