@@ -44,10 +44,10 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang='ja'>
-      <Provider store={store}>
+    <Provider store={store}>
+      <html lang='ja'>
         <body className={inter.className}>{children}</body>
-      </Provider>
-    </html>
+      </html>
+    </Provider>
   );
 }
