@@ -1,0 +1,29 @@
+.sidebar {
+  display: flex;
+  flex: 0.35;
+  height: 100vh;
+
+  .sidebar-left {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: #1a1c20;
+    padding: 4px 16px;
+
+    .sidebar-left-icon {
+      margin: 8px 0 12px;
+      width: 60px;
+      height: 60px;
+      background-color: #2c2a33;
+      border-radius: 50%;
+      position: relative;
+    }
+
+    .sidebar-left-icon-image {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+    }
+  }
+}

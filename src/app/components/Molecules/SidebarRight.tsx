@@ -1,9 +1,11 @@
 import React from 'react'
-import '~/app/styles/Sidebar/SidebarRight.scss';
+import '~/app/styles/Sidebar/Sidebar.scss';
 
 const SidebarRight = () => {
   return (
-    <div>SidebarRight</div>
+    <div className='sidebar-right'>
+      <p>DISCORD</p>
+    </div>
   )
 }
 
