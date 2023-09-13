@@ -9,7 +9,7 @@ const Login = () => {
   return (
     <div className='login'>
       <div className='login-logo'>
-        <Image src='/discordIcon.png' alt='discordIcon' width={20} height={20} />
+        <Image src='/discordIcon.png' alt='' width={40} height={40} />
       </div>
       <Button className='login-btn'>LOGIN</Button>
     </div>

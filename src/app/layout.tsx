@@ -1,3 +1,6 @@
+// SSRだとProviderが機能しない為、CSRに変更
+'use client'
+
 import './styles/global/globals.scss';
 import type { Metadata } from 'next';
 import { Inter } from 'next/font/google';

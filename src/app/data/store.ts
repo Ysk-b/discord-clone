@@ -1,9 +1,14 @@
-import { configureStore } from "@reduxjs/toolkit"
-import userReducer from "~/app/features/userSlice"
+import { configureStore } from '@reduxjs/toolkit';
+import userReducer from '~/app/features/userSlice';
 
 export const store = configureStore({
   reducer: userReducer,
 });
+
+// この処理の内容docで理解する
+// 両方ともtypeで形定義してる
+export type AppDispatch = typeof store.dispatch;
+export type RootState = ReturnType<typeof store.getState>;
 
 // configureStoreとは？
 // 最初から処理の流れが理解できない
