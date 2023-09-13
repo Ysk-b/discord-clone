@@ -97,6 +97,17 @@
         .sidebar-right-channels-settings-account {
           display: flex;
           align-items: center;
+          gap: 16px;
+
+          .sidebar-right-channels-settings-account-name > h4 {
+            color: #fff;
+            font-size: 16px;
+          }
+
+          .sidebar-right-channels-settings-account-name > p {
+            color: #686a6e;
+            font-size: 12px;
+          }
         }
 
         .sidebar-right-channels-settings-voice {
