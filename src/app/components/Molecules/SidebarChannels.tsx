@@ -1,6 +1,8 @@
 import React from 'react';
 import '~/app/styles/Sidebar/Sidebar.scss';
 
+import SidebarChannel from '~/app/components/Atom/SidebarChannel';
+
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import AddIcon from '@mui/icons-material/Add';
 
@@ -13,6 +15,9 @@ const SidebarChannels = () => {
           <p className='sidebar-right-chennels-header-top-text'>React Channel</p>
         </div>
         <AddIcon className='sidebar-right-channels-header-plus' />
+      </div>
+      <div className='sidebar-right-channels-list'>
+        <SidebarChannel />
       </div>
     </div>
   );
