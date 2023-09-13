@@ -1,4 +1,6 @@
-■定義
+1. Redux
+------------------------------------
+定義
 ・UIのstateをグローバルに管理するFW
 ・少量のstate管理はpropsの受け渡しで実現可。だが、開発規模が大きくなると管理が煩雑化し、保守性が低下する → Redux, useContextを使用した管理が有効
 
@@ -53,3 +55,35 @@
 ■注意
 Reduxストア（またはGlobal State）の更新と、
 コンポーネントのローカル状態(useStateで更新されるstate)は異なる概念。混同しない
+
+
+2. 今回の実装における処理の流れ
+------------------------------------
+-- フロントエンド実装 --
+➀ 実装
+
+-- バックエンド実装 --
+★ ユーザーの状態をグローバルに管理できる仕組みを実現したい
+➀ Firebase初期化
+→ 認証情報: auth: getAuth()
+→ DB情報: Firestore: getFirestore()
+→ Google認証: provider: GoogleAuthProvider()
+
+➁ redux-Toolkitを導入し、stateをグローバルに管理できる状態を実現
+
+➂ providerを使用し、Googleのログイン機能実装
+→ signInWithPopup(auth, provider)で実現
+→ Reduxを活用し、'ログイン状態'というActionをStoreにdispatch, state更新する仕組み実現
+→ ログアウト機能も同要領で実現
+
+★ Firestoreからデータを取得/出力したい
+➀ データ取得
+→ query(collection(db, "COLLECTION NAME"))でデータ取得
+  ※ OnSnapShot()でリアルタイムに取得
+  ※ 非同期処理の為useEffectで管理
+
+➁ データ出力
+→ query × OnSnapShotで取得したデータを、useStateの状態関数に代入し、mapで出力
+
+➂ リファクタリング
+→ コレクションごとにuseEffectを記載せず、カスタムフックで管理する
