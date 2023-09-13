@@ -59,5 +59,23 @@
   .chat-messages {
     height: 100vh;
     overflow-y: scroll;
+
+    .chat-messages-message {
+      display: flex;
+      align-items: center;
+      padding: 16px;
+      color: #fff;
+      margin-bottom: -16px;
+    }
+
+    .chat-messages-message-info {
+      padding: 20px 20px 20px 12px;
+    }
+
+    .chat-messages-message-info-timestamp {
+      color: #7b7c85;
+      margin-left: 20px;
+      font-size: 16px;
+    }
   }
 }
