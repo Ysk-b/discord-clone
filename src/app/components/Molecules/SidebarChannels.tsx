@@ -15,6 +15,8 @@ import { db } from '~/app/data/firebase';
 import { addDoc, collection } from 'firebase/firestore';
 
 const SidebarChannels = () => {
+  // useAppSelectorでグローバルなstate使用を有効化
+  // state.user.user('userスライス'内の'userステート')
   const user = useAppSelector((state) => state.user.user);
   const { documents: channels } = useCollection('channels');
 

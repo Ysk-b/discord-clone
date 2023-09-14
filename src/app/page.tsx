@@ -12,9 +12,9 @@ import { auth } from './data/firebase';
 import { login, logout } from './features/userSlice';
 
 const App = () => {
-  // reduxを介して、userはglobalな変数として利用可能?
+  // スライス名がuserのstateを選択し、グローバルに使用できる状態にする
+  // ※ state.user.user('userスライス'内の'userステート')
   const user = useAppSelector((state) => state.user.user);
-
   const dispatch = useAppDispatch();
 
   useEffect(() => {
