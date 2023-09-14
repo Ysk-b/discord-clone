@@ -16,6 +16,8 @@ import {
   addDoc,
   collection,
   onSnapshot,
+  orderBy,
+  query,
   serverTimestamp,
 } from 'firebase/firestore';
 import { db } from '~/app/data/firebase';
@@ -42,10 +44,11 @@ const Chat = () => {
 
   useEffect(() => {
     let collectionRef = collection(db, 'channels', String(channelId), 'messages');
+    const collectionRefOrderBy = query(collectionRef, orderBy('timestamp', 'desc'));
 
     // 1. collectionRefをsnapshotに記載の形式でリアルタイムに切り出す
     // 2. 更新関数に指定し、状態変数に値を格納
-    onSnapshot(collectionRef, (snapshot) => {
+    onSnapshot(collectionRefOrderBy, (snapshot) => {
       let results: MessagesProps[] = [];
       snapshot.docs.forEach((doc) => {
         results.push({
@@ -74,6 +77,8 @@ const Chat = () => {
       timestamp: serverTimestamp(),
       user: user,
     });
+
+    setInputText('');
   };
 
   return (
@@ -81,7 +86,12 @@ const Chat = () => {
       <ChatHeader channelName={channelName} />
       <div className='chat-messages'>
         {messages.map((message, index) => (
-          <ChatMessage key={index} message={message.message} timestamp={message.timestamp} user={message.user} />
+          <ChatMessage
+            key={index}
+            message={message.message}
+            timestamp={message.timestamp}
+            user={message.user}
+          />
         ))}
       </div>
 
@@ -90,6 +100,7 @@ const Chat = () => {
         <form className='chat-input-form'>
           <input
             type='text'
+            value={inputText}
             placeholder='Send message to #TEST'
             onChange={(e: React.ChangeEvent<HTMLInputElement>) => setInputText(e.target.value)}
           />
