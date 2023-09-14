@@ -3,15 +3,18 @@ import '~/app/styles/Chat/Chat.scss';
 
 import GifIcon from '@mui/icons-material/Gif';
 import { AddCircleOutline, CardGiftcardOutlined, EmojiEmotionsOutlined } from '@mui/icons-material';
-import ChatMessage from '../Molecules/ChatMessage';
-import ChatHeader from '../Molecules/ChatHeader';
+import ChatMessage from '~/app/components/Molecules/ChatMessage';
+import ChatHeader from '~/app/components/Molecules/ChatHeader';
+import { useAppSelector } from '~/app/data/hooks';
 
 const Chat = () => {
+  const channelName = useAppSelector((state) => state.channelName);
+
   return (
     <div className='chat'>
       <ChatHeader />
       <div className='chat-messages'>
-      <ChatMessage />
+        <ChatMessage />
       </div>
 
       <div className='chat-input'>
