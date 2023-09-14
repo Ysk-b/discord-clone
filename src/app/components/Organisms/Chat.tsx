@@ -8,11 +8,11 @@ import ChatHeader from '~/app/components/Molecules/ChatHeader';
 import { useAppSelector } from '~/app/data/hooks';
 
 const Chat = () => {
-  const channelName = useAppSelector((state) => state.channelName);
+  const channelName = useAppSelector((state) => state.channel.channelName);
 
   return (
     <div className='chat'>
-      <ChatHeader />
+      <ChatHeader channelName={channelName} />
       <div className='chat-messages'>
         <ChatMessage />
       </div>

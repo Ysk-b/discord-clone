@@ -7,7 +7,7 @@ import { auth} from '~/app/data/firebase';
 import { useAppSelector } from '~/app/data/hooks';
 
 const SidebarChannelSettings = () => {
-  const user = useAppSelector((state) => state.user);
+  const user = useAppSelector((state) => state.user.user);
 
   return (
     <div className='sidebar-right-channels-settings'>

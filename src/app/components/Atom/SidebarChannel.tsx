@@ -24,8 +24,8 @@ const SidebarChannel = ({ id, channel }: SidebarChannelProps) => {
         )
       }
     >
-      <span className='sidebar-right-channels-list-item-hash'>#{channel.name}</span>
-      <p className='sidebar-right-channels-list-item-text'>{channel.name}</p>
+      <span className='sidebar-right-channels-list-item-hash'>#</span>
+      <p className='sidebar-right-channels-list-item-text'>{channel.channel.channelName}</p>
     </div>
   );
 };

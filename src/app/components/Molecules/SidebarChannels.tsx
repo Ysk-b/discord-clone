@@ -15,7 +15,7 @@ import { db } from '~/app/data/firebase';
 import { addDoc, collection } from 'firebase/firestore';
 
 const SidebarChannels = () => {
-  const user = useAppSelector((state) => state.user);
+  const user = useAppSelector((state) => state.user.user);
   const { documents: channels } = useCollection('channels');
 
   const addChannel = async () => {
