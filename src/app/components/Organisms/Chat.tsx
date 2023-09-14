@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import '~/app/styles/Chat/Chat.scss';
 
 import GifIcon from '@mui/icons-material/Gif';
@@ -12,19 +12,51 @@ import {
   CollectionReference,
   DocumentData,
   DocumentReference,
+  Timestamp,
   addDoc,
   collection,
+  onSnapshot,
   serverTimestamp,
 } from 'firebase/firestore';
 import { db } from '~/app/data/firebase';
 
+interface MessagesProps {
+  timestamp: Timestamp;
+  message: string;
+  user: {
+    uid: string;
+    photo: string;
+    email: string;
+    displayName: string;
+  };
+}
+
 const Chat = () => {
   // stateで管理する入力値を送信し、Firestoreのmessages Collectionに格納したい
   const [inputText, setInputText] = useState<string>('');
+  const [messages, setMessages] = useState<MessagesProps[]>([]);
 
   const user = useAppSelector((state) => state.user.user);
   const channelId = useAppSelector((state) => state.channel.channelId);
   const channelName = useAppSelector((state) => state.channel.channelName);
+
+  useEffect(() => {
+    let collectionRef = collection(db, 'channels', String(channelId), 'messages');
+
+    // 1. collectionRefをsnapshotに記載の形式でリアルタイムに切り出す
+    // 2. 更新関数に指定し、状態変数に値を格納
+    onSnapshot(collectionRef, (snapshot) => {
+      let results: MessagesProps[] = [];
+      snapshot.docs.forEach((doc) => {
+        results.push({
+          timestamp: doc.data().timestamp,
+          message: doc.data().message,
+          user: doc.data().user,
+        });
+      });
+      setMessages(results);
+    });
+  }, [channelId]);
 
   const sendMessage = async (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
     e.preventDefault();
