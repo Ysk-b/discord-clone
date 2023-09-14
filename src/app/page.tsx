@@ -13,7 +13,7 @@ import { login, logout } from './features/userSlice';
 
 const App = () => {
   // reduxを介して、userはglobalな変数として利用可能?
-  const user = useAppSelector((state) => state.user);
+  const user = useAppSelector((state) => state.user.user);
 
   const dispatch = useAppDispatch();
 

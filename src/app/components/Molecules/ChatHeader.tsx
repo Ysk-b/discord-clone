@@ -5,12 +5,16 @@ import { HelpRounded, Notifications, SearchRounded, SendRounded } from '@mui/ico
 import PushPinIcon from '@mui/icons-material/PushPin';
 import PeopleAltIcon from '@mui/icons-material/PeopleAlt';
 
-const ChatHeader = () => {
+interface ChannelNameProps {
+  channelName: string | null;
+}
+
+const ChatHeader = ({ channelName }: ChannelNameProps) => {
   return (
     <div className='chat-header'>
       <div className='chat-header-left'>
         <h3 className='chat-header-left-text'>
-          <span className='chat-header-left-text-hash'>#TEST</span>
+          <span className='chat-header-left-text-hash'>#{channelName}</span>
         </h3>
       </div>
 

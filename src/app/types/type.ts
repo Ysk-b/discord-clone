@@ -7,3 +7,9 @@ export interface InitialUserState {
     displayName: string;
   };
 }
+
+// チャンネルの初期情報の型定義
+export interface InitialChannelState {
+  channelId: string | null;
+  channelName: string | null;
+}

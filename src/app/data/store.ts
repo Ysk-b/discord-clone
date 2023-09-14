@@ -1,8 +1,12 @@
 import { configureStore } from '@reduxjs/toolkit';
 import userReducer from '~/app/features/userSlice';
+import channelReducer from '~/app/features/channelSlice';
 
 export const store = configureStore({
-  reducer: userReducer,
+  reducer: {
+    user: userReducer,
+    channel: channelReducer,
+  },
 });
 
 // この処理の内容docで理解する
