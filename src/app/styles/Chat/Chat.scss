@@ -1,5 +1,7 @@
 .chat {
+  flex: 1;
   display: flex;
+  overflow-y: scroll;
   flex-direction: column;
   background-color: #34373c;
   position: relative;
@@ -63,12 +65,12 @@
     .chat-messages-message {
       display: flex;
       align-items: center;
-      padding: 16px;
+      padding: 8px 16px;
       color: #fff;
     }
 
     .chat-messages-message-info {
-      padding: 20px 20px 20px 12px;
+      padding: 12px 16px;
     }
 
     .chat-messages-message-info-timestamp {
@@ -87,6 +89,12 @@
     padding: 8px 16px;
     background-color: #474b53;
     border-radius: 4px;
+
+    .chat-input-form {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
 
     .chat-input-form > input {
       padding: 12px;

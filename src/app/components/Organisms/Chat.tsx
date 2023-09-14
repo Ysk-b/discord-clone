@@ -96,8 +96,8 @@ const Chat = () => {
       </div>
 
       <div className='chat-input'>
-        <AddCircleOutline className='chat-input-icon' />
         <form className='chat-input-form'>
+          <AddCircleOutline className='chat-input-icon' />
           <input
             type='text'
             value={inputText}
