@@ -29,20 +29,39 @@
 ・Slice: reducer + actionの集合体(name, initialState, reducersを含む)
 ・Dispatch: Storeに向けてActionを運ぶ
 
-・Redux Toolkit: Reduxを用いた開発を効率的に行うためのツールキット
+・Redux Toolkit: 
+  Reduxを用いた開発を効率的に行うためのツールキット
 → コードの総量削減が可能 = 可読性の向上
 → TypeScriptとの相性が良い
 → 機能ごとにState, Reducerを内包するSliceで切り分ける
 → Stateのimmutable性を意識しなくて良い → 直接変更する形式で記載可
 
-・configureStore()
-・createSlice()
+・configureStore(): 
+  Storeを作成する関数
+→ storeには、stateの状態を管理する目的で、reducerプロパティを持つsliceを設定する。
+
+・createSlice(): 
+  reducerとActionCreatorの機能を持つオブジェクトを生成する関数
+→ createSliceで生成したオブジェクトをSliceと呼ぶ。
+
+・action.payload: 
+  ユーザーによる何らかのトリガーによって、actionがdispatchされる
+  actionはオブジェクトであり、例えば以下のようなプロパティを含む。
+
+  {
+  type: 'SOME_ACTION_TYPE',
+  payload: /* 格納データの内容 */,
+  }
+
+  e.g. ユーザーログイン時、ログイン情報(ユーザー名, id, 編集時間...)は、
+  action.payloadに格納され、そのデータでstateの更新が可能になる
 
 ・useReducer: useStateと同じく、stateの管理を行うhooks
  https://takayamato.com/react-usereducer/
  https://www.youtube.com/watch?v=uuAdVs7sbAs&t=1466s
 
-・useDispatch: reducerにactionオブジェクトを送信する為の関数
+・useDispatch: Reduxストアからディスパッチャー関数 (dispatch 関数)を取得するために使用
+・useSelector: Reduxストアからステートを選択するために使用
 
 ■処理手順(入力 ~ 描画)
 1. : ユーザーやアプリケーションのトリガーに応じて(onclickやonchange等)Actionがdispatchされる
@@ -61,6 +80,10 @@ Reduxストア（またはGlobal State）の更新と、
 ------------------------------------
 -- フロントエンド実装 --
 ➀ 実装
+➁ ログイン状態の管理
+・useDispatch, useSelectorを使用。型定義（の上、カスタムフックとして定義）
+・useSelectorで選択するuserステートの状態に応じて、ログイン画面の表示を制御
+・その上で、ログインをsliceのAction Creator(login, logout), FirebaseのonAuthChangedで実現
 
 -- バックエンド実装 --
 ★ ユーザーの状態をグローバルに管理できる仕組みを実現したい
@@ -69,7 +92,13 @@ Reduxストア（またはGlobal State）の更新と、
 → DB情報: Firestore: getFirestore()
 → Google認証: provider: GoogleAuthProvider()
 
-➁ redux-Toolkitを導入し、stateをグローバルに管理できる状態を実現
+➁ redux-toolkitで、stateをグローバルに管理
+1. createSlice()でslice生成
+2. slice内のReducer, Action Creatorをexportし、configureStore()に渡し、Storeを生成
+3. 型定義
+4. layout.tsxに、以下手順でstateグローバル管理が可能
+  ・<Provider></Provider>でchildren(ページ全体)を囲む
+  ・store={store}として、2で生成したstoreを指定する  
 
 ➂ providerを使用し、Googleのログイン機能実装
 → signInWithPopup(auth, provider)で実現
@@ -86,4 +115,12 @@ Reduxストア（またはGlobal State）の更新と、
 → query × OnSnapShotで取得したデータを、useStateの状態関数に代入し、mapで出力
 
 ➂ リファクタリング
-→ コレクションごとにuseEffectを記載せず、カスタムフックで管理する
+→ 複数回繰り返される処理はカスタムフックで纏める
+
+
+3. 学び/気づき
+------------------------------------
+・git commitのメッセージは接頭辞を付与してもっと分かりやすく
+  https://qiita.com/itosho/items/9565c6ad2ffc24c09364
+
+・PR名と作業内容が一貫していないことがある(BackendというPRでフロントCSSの修正 等)

@@ -5,15 +5,14 @@ const initialState: InitialUserState = {
   user: null,
 };
 
-// 1. Redux ToolkitからcreateSlice関数で'Reduxスライス'を生成
-// 2. 初期値がnull(&& 型定義済)のInitialStateをimport
+// createSlice関数でスライス作成
 export const userSlice = createSlice({
-  name: 'user',
-  initialState,
-  reducers: {
-    // state(現在のステート)に対して、action.payload(新規ユーザー情報)を代入
-    // このactionはユーザーログイン時にdispatchされることを想定
-    // 一方、logout時はユーザー情報をnull(= 初期化)とする
+  name: 'user', // スライス名
+  initialState, // stateの初期値
+  reducers: { // stateの変更を処理する関数
+    // login, logout = ActionCreator = Actionを生成する純粋関数
+    // action.payload = Actionのデータの一部が格納される
+    // e.g. loginの場合, userId, id, name, date...etc
     login: (state, action) => {
       state.user = action.payload;
     },
@@ -23,5 +22,8 @@ export const userSlice = createSlice({
   },
 });
 
+// 1. userSlice.actionsオブジェクトからlogin/logoutプロパティをexport
+// 2. userSlice.reducerでReducer関数をexport
+// → 他モジュールでAction Creator, Reducer関数を呼び、Reduxストア内のstate更新が可能
 export const { login, logout } = userSlice.actions;
 export default userSlice.reducer;
