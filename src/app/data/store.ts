@@ -9,5 +9,7 @@ export const store = configureStore({
   },
 });
 
+// Reduxストアの dispatch メソッドの型
 export type AppDispatch = typeof store.dispatch;
+// アプリケーション全体のステートの型
 export type RootState = ReturnType<typeof store.getState>;
