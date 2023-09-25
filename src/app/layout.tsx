@@ -6,6 +6,8 @@ import type { Metadata } from 'next';
 import { Inter } from 'next/font/google';
 import { Provider } from 'react-redux';
 import { store } from './data/store';
+import { Suspense } from 'react';
+import Loading from './loading';
 
 const inter = Inter({ subsets: ['latin'] });
 const siteName = 'Discord App';
@@ -49,7 +51,11 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <Provider store={store}>
       <html lang='ja'>
-        <body className={inter.className}>{children}</body>
+        <body className={inter.className}>
+          <Suspense fallback={<Loading />}>
+            {children}
+          </Suspense>
+        </body>
       </html>
     </Provider>
   );
