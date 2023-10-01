@@ -17,12 +17,16 @@ import { addDoc, collection } from 'firebase/firestore';
 const SidebarChannels = () => {
   // useAppSelectorでグローバルなstate使用を有効化
   // state.user.user('userスライス'内の'userステート')
-  const user = useAppSelector((state) => state.user.user);
+  const user = useAppSelector((state: any) => state.user.user);
   const { documents: channels } = useCollection('channels');
 
+  // channelName -> フィールド名 : channelName: 入力値
+  // prompt()、ダイアログ表示、入力完了した値が変数に入る
   const addChannel = async () => {
     let channelName: string | null = prompt("Let's create a new channel");
 
+    // 条件分岐 -> 変数がnullの場合処理を意図的にskip
+    // Firestoreの'channels'というDBに対し、channelNameフィールドを作成の上、channelName変数の値を格納
     if (channelName) {
       await addDoc(collection(db, 'channels'), {
         channelName: channelName,

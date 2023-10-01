@@ -17,3 +17,5 @@ const auth = getAuth(app);
 const provider = new GoogleAuthProvider();
 
 export { auth, provider, db };
+
+// 1, Firebaseの初期化
