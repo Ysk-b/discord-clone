@@ -5,7 +5,6 @@ const initialState: InitialUserState = {
   user: null,
 };
 
-// createSlice関数でスライス作成
 export const userSlice = createSlice({
   name: 'user', // スライス名
   initialState, // stateの初期値
@@ -22,8 +21,6 @@ export const userSlice = createSlice({
   },
 });
 
-// 1. userSlice.actionsオブジェクトからlogin/logoutプロパティをexport
-// 2. userSlice.reducerでReducer関数をexport
-// → 他モジュールでAction Creator, Reducer関数を呼び、Reduxストア内のstate更新が可能
+// Slice -> action creatorとreducerを内包する為、以下の形でexport
 export const { login, logout } = userSlice.actions;
 export default userSlice.reducer;

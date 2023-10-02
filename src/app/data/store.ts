@@ -13,3 +13,5 @@ export const store = configureStore({
 export type AppDispatch = typeof store.dispatch;
 // アプリケーション全体のステートの型
 export type RootState = ReturnType<typeof store.getState>;
+
+// 2. configureStoreでstoreを作成

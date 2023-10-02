@@ -60,3 +60,4 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     </Provider>
   );
 }
+// 3. Providerの記載によりグローバルstateの適用範囲を指定
