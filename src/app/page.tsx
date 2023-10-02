@@ -14,7 +14,7 @@ import { login, logout } from './features/userSlice';
 const App = () => {
   // スライス名がuserのstateを選択し、グローバルに使用できる状態にする
   // ※ state.user.user('userスライス'内の'userステート')
-  const user = useAppSelector((state) => state.user.user);
+  const user = useAppSelector((state: any) => state.user.user);
   const dispatch = useAppDispatch();
 
   useEffect(() => {
